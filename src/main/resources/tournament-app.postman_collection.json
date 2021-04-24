@@ -1,0 +1,150 @@
+{
+	"info": {
+		"_postman_id": "1ddeaf66-2893-4e7f-89e4-fa629565e90b",
+		"name": "tournament-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create-jugador",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Abel\",\r\n    \"pj\": 0,\r\n    \"pg\": 0,\r\n    \"pe\": 0,\r\n    \"pp\": 0,\r\n    \"bonus\": 0,\r\n    \"puntos\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/jugador/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"jugador",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-all-jugadores",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/jugador/list",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"jugador",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-by-id-jugador",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/jugador/:id",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"jugador",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update-jugador",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 2,\r\n    \"nombre\": \"Ariel\",\r\n    \"pj\": 1,\r\n    \"pg\": 1,\r\n    \"pe\": 0,\r\n    \"pp\": 0,\r\n    \"bonus\": 0,\r\n    \"puntos\": 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/jugador/update",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"jugador",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete-jugador",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "3",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/jugador/delete",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"jugador",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
