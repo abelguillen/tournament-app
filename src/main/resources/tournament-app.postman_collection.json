@@ -6,13 +6,13 @@
 	},
 	"item": [
 		{
-			"name": "create-jugador",
+			"name": "[jugador] create",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\": \"Abel\",\r\n    \"pj\": 0,\r\n    \"pg\": 0,\r\n    \"pe\": 0,\r\n    \"pp\": 0,\r\n    \"bonus\": 0,\r\n    \"puntos\": 0\r\n}",
+					"raw": "{\r\n    \"nombre\": \"Fede\",\r\n    \"pj\": 0,\r\n    \"pg\": 0,\r\n    \"pe\": 0,\r\n    \"pp\": 0,\r\n    \"bonus\": 0,\r\n    \"puntos\": 0\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -34,7 +34,7 @@
 			"response": []
 		},
 		{
-			"name": "get-all-jugadores",
+			"name": "[jugador] get-all",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -60,7 +60,7 @@
 			"response": []
 		},
 		{
-			"name": "get-by-id-jugador",
+			"name": "[jugador] get-by-id",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -85,7 +85,7 @@
 			"response": []
 		},
 		{
-			"name": "update-jugador",
+			"name": "[jugador] update",
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -113,7 +113,7 @@
 			"response": []
 		},
 		{
-			"name": "delete-jugador",
+			"name": "[jugador] delete",
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -141,6 +141,59 @@
 					"path": [
 						"jugador",
 						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[partido] create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nroPartido\": 1,\r\n    \"equipoA\": [\r\n        1,\r\n        2\r\n    ],\r\n    \"equipoB\": [\r\n        3,\r\n        4\r\n    ],\r\n    \"ganador\": \"B\",\r\n    \"bonus\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/partido/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"partido",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[partido] get-by-id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/partido/:id",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"partido",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "15"
+						}
 					]
 				}
 			},
