@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.aguillen.tournamentapp.dto.JugadorDTO;
-import com.aguillen.tournamentapp.model.Jugador;
+import com.aguillen.tournamentapp.entity.Jugador;
+import com.aguillen.tournamentapp.mapper.JugadorMapper;
 import com.aguillen.tournamentapp.repository.JugadorRepository;
-import com.aguillen.tournamentapp.util.JugadorMapper;
 
 @Service
 public class JugadorService {
@@ -32,9 +32,9 @@ public class JugadorService {
 		}
 	}
 	
-	public JugadorDTO save(Jugador article) throws Exception {
+	public JugadorDTO save(Jugador jugador) throws Exception {
 		try {
-			return JugadorMapper.buildJugadorDTO(repository.save(article));
+			return JugadorMapper.buildJugadorDTO(repository.save(jugador));
 		} catch(Exception ex) {
 			throw new Exception(ex);
 		}

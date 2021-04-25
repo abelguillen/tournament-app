@@ -5,17 +5,17 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.aguillen.tournamentapp.entity.Jugador;
+import com.aguillen.tournamentapp.entity.Partido;
 
 @Repository
-public interface JugadorRepository extends CrudRepository<Jugador, Integer> {
+public interface PartidoRepository extends CrudRepository<Partido, Integer> {
 	
-	public List<Jugador> findAll();
+	public List<Partido> findAll();
 	
-	public Jugador getById(Integer id);
+	public Partido getById(Integer id);
 	
 	@SuppressWarnings("unchecked")
-	public Jugador save(Jugador jugador);
+	public Partido save(Partido partido);
 	
 	public void deleteById(Integer id);
 	

@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.aguillen.tournamentapp.TournamentApplication;
 import com.aguillen.tournamentapp.dto.JugadorDTO;
+import com.aguillen.tournamentapp.mapper.JugadorMapper;
 import com.aguillen.tournamentapp.service.JugadorService;
-import com.aguillen.tournamentapp.util.JugadorMapper;
 
 @RestController
 @RequestMapping(value = "/jugador")
@@ -29,6 +29,12 @@ public class JugadorController {
 	@Autowired
 	private JugadorService service;
 
+	/***
+	 * List jugador
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	@GetMapping("/list")
 	public List<JugadorDTO> getAll() throws Exception {
 		try {
@@ -39,6 +45,13 @@ public class JugadorController {
 		}
 	}
 
+	/***
+	 * GetById jugador
+	 * 
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	@GetMapping("/{id}")
 	public JugadorDTO getOne(@PathVariable("id") Integer id) throws Exception {
 		try {
@@ -49,6 +62,13 @@ public class JugadorController {
 		}
 	}
 
+	/***
+	 * Create jugador
+	 * 
+	 * @param jugadorDTO
+	 * @return
+	 * @throws Exception
+	 */
 	@PostMapping("/create")
 	public JugadorDTO create(@RequestBody JugadorDTO jugadorDTO) throws Exception {
 		try {
@@ -59,6 +79,13 @@ public class JugadorController {
 		}
 	}
 
+	/***
+	 * Update jugador
+	 * 
+	 * @param jugadorDTO
+	 * @return
+	 * @throws Exception
+	 */
 	@PutMapping("/update")
 	public JugadorDTO update(@RequestBody JugadorDTO jugadorDTO) throws Exception {
 		try {
@@ -69,6 +96,13 @@ public class JugadorController {
 		}
 	}
 
+	/***
+	 * Delete jugador
+	 * 
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	@DeleteMapping("/delete")
 	public boolean deleteById(@RequestParam("id") Integer id) throws Exception {
 		try {

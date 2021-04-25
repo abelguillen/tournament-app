@@ -1,4 +1,4 @@
-package com.aguillen.tournamentapp.util;
+package com.aguillen.tournamentapp.mapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import com.aguillen.tournamentapp.dto.JugadorDTO;
-import com.aguillen.tournamentapp.model.Jugador;
+import com.aguillen.tournamentapp.entity.Jugador;
 
 @Component
 public class JugadorMapper {

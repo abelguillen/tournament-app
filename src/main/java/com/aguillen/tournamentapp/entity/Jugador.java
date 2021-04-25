@@ -1,4 +1,4 @@
-package com.aguillen.tournamentapp.model;
+package com.aguillen.tournamentapp.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,11 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.stereotype.Component;
-
 @Entity
-@Table(name = "jugadores")
-@Component
+@Table(name = "jugador")
 public class Jugador {
 
 	@Id
@@ -39,13 +36,11 @@ public class Jugador {
 	
 	@Column(name = "puntos")
 	private Integer puntos;
-
-	public Jugador() {
-	}
+	
+	public Jugador() {}
 
 	public Jugador(Integer id, String nombre, Integer pj, Integer pg, Integer pe, Integer pp, Integer bonus,
 			Integer puntos) {
-		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.pj = pj;
@@ -54,6 +49,29 @@ public class Jugador {
 		this.pp = pp;
 		this.bonus = bonus;
 		this.puntos = puntos;
+	}
+	
+	public void ganar(Integer bonus) {
+		this.pj++;
+		this.pg++;
+		this.bonus+=bonus;
+		this.puntos=calcularPuntos();
+	}
+	
+	public void empatar() {
+		this.pj++;
+		this.pe++;
+		this.puntos=calcularPuntos();
+	}
+	
+	public void perder() {
+		this.pj++;
+		this.pp++;
+		this.puntos=calcularPuntos();
+	}
+	
+	private Integer calcularPuntos() {
+		return pg*3 + pe + bonus;
 	}
 
 	public Integer getId() {
