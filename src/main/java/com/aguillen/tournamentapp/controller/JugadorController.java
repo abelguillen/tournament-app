@@ -36,9 +36,10 @@ public class JugadorController {
 	 * @throws Exception
 	 */
 	@GetMapping("/list")
-	public List<JugadorDTO> getAll() throws Exception {
+	public List<JugadorDTO> getAll(@RequestParam(value="sort_field", required=false, defaultValue = "puntos") String sortField,
+            @RequestParam(value="sort_order", required=false, defaultValue = "DESC") String sortOrder) throws Exception {
 		try {
-			return service.getAll();
+			return service.getAll(sortField, sortOrder);
 		} catch (Exception ex) {
 			LOG.error("Ha ocurrido un error al obtener la lista de jugadores");
 			throw new Exception(ex);
