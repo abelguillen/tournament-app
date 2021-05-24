@@ -1,5 +1,7 @@
 package com.aguillen.tournamentapp.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aguillen.tournamentapp.TournamentApplication;
@@ -31,15 +34,16 @@ public class PartidoController {
 	 * @return
 	 * @throws Exception
 	 */
-//	@GetMapping("/list")
-//	public List<PartidoDTO> getAll() throws Exception {
-//		try {
-//			return service.getAll();
-//		} catch (Exception ex) {
-//			LOG.error("Ha ocurrido un error al obtener la lista de partidoes");
-//			throw new Exception(ex);
-//		}
-//	}
+	@GetMapping("/list")
+	public List<PartidoResponse> getAll(@RequestParam(value="sort_field", required=false, defaultValue = "nroPartido") String sortField,
+            @RequestParam(value="sort_order", required=false, defaultValue = "ASC") String sortOrder) throws Exception {
+		try {
+			return service.getAll(sortField, sortOrder);
+		} catch (Exception ex) {
+			LOG.error("Ha ocurrido un error al obtener la lista de partidoes");
+			throw new Exception(ex);
+		}
+	}
 
 	/***
 	 * GetById partido

@@ -2,6 +2,7 @@ package com.aguillen.tournamentapp.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,7 +11,7 @@ import com.aguillen.tournamentapp.entity.Partido;
 @Repository
 public interface PartidoRepository extends CrudRepository<Partido, Integer> {
 	
-	public List<Partido> findAll();
+	public List<Partido> findAll(Sort sort);
 	
 	public Partido getById(Integer id);
 	

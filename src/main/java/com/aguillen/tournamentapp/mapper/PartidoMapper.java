@@ -53,12 +53,33 @@ public class PartidoMapper {
 		}
 		
 		PartidoResponse partidoResponse = new PartidoResponse();
+		partidoResponse.setId(partidoDTO.getId());
+		partidoResponse.setFecha(partidoDTO.getFecha());
 		partidoResponse.setBonus(partidoDTO.getBonus());
 		partidoResponse.setGanador(partidoDTO.getGanador());
 		partidoResponse.setNroPartido(partidoDTO.getNroPartido());
 		partidoResponse.setJugadorEnPartido(jugadorEnPartidoList);
 		
 		return partidoResponse;
+	}
+	
+	public static List<PartidoResponse> buildPartidoListResponse(List<PartidoDTO> partidoDTOList) {
+		
+		List<PartidoResponse> partidoResponseList = new ArrayList<>();
+		
+		for(PartidoDTO partidoDTO : partidoDTOList) {
+			PartidoResponse partidoResponse = new PartidoResponse();
+			partidoResponse.setId(partidoDTO.getId());
+			partidoResponse.setFecha(partidoDTO.getFecha());
+			partidoResponse.setBonus(partidoDTO.getBonus());
+			partidoResponse.setGanador(partidoDTO.getGanador());
+			partidoResponse.setNroPartido(partidoDTO.getNroPartido());
+			
+			partidoResponseList.add(partidoResponse);
+		}
+		
+		return partidoResponseList;
+		
 	}
 	
 }

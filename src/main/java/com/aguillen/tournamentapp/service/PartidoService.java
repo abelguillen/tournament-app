@@ -5,6 +5,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.aguillen.tournamentapp.TournamentApplication;
@@ -37,13 +39,15 @@ public class PartidoService {
 	@Autowired
 	private JugadorService jugadorService;
 
-//	public List<PartidoDTO> getAll() throws Exception {
-//		try {
-//			return PartidoMapper.convertPartidoBoToDto(partidoRepository.findAll());
-//		} catch (Exception ex) {
-//			throw new Exception(ex);
-//		}
-//	}
+	public List<PartidoResponse> getAll(String sortField, String sortOrder) throws Exception {
+		try {
+			Direction direction = Direction.fromString(sortOrder);
+			List<PartidoDTO> partidoDTOList = PartidoMapper.convertPartidoBoToDto(partidoRepository.findAll(Sort.by(direction, sortField)));
+			return PartidoMapper.buildPartidoListResponse(partidoDTOList);
+		} catch (Exception ex) {
+			throw new Exception(ex);
+		}
+	}
 
 	public PartidoResponse getOne(Integer id) throws Exception {
 		try {
@@ -114,7 +118,7 @@ public class PartidoService {
 		for(PartidosJugadosDTO partidosJugadosDTO : partidosJugadosDTOList) {
 			String equipo = partidosJugadosDTO.getEquipo();
 			Jugador jugador = partidosJugadosDTO.getJugador();
-			if(ganador.isEmpty()) {
+			if(ganador.equals("EMPATE")) {
 				jugador.empatar();
 			} else if(ganador.equals(equipo)) {
 				jugador.ganar(bonus);
