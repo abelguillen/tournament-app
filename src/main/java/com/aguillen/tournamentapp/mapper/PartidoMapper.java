@@ -1,7 +1,7 @@
 package com.aguillen.tournamentapp.mapper;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -25,7 +25,7 @@ public class PartidoMapper {
 	
 	public static Partido buildPartidoBO(PartidoDTO partidoDTO) {
 		Partido partido = modelMapper.map(partidoDTO, Partido.class);
-		if(partido.getFecha() == null) partido.setFecha(new Date());
+		if(partido.getFecha() == null) partido.setFecha(LocalDateTime.now());
 		return partido;
 	}
 	

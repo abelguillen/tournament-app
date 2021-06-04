@@ -1,12 +1,12 @@
 package com.aguillen.tournamentapp.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class PartidoResponse {
 	
 	private Integer id;
-	private Date fecha;
+	private LocalDateTime fecha;
 	private Integer nroPartido;
 	private Integer bonus;
 	private String ganador;
@@ -14,7 +14,7 @@ public class PartidoResponse {
 	
 	public PartidoResponse() {}
 
-	public PartidoResponse(Integer id, Date fecha, Integer nroPartido, Integer bonus, String ganador,
+	public PartidoResponse(Integer id, LocalDateTime fecha, Integer nroPartido, Integer bonus, String ganador,
 			List<JugadorEnPartido> jugadorEnPartido) {
 		super();
 		this.id = id;
@@ -33,11 +33,11 @@ public class PartidoResponse {
 		this.id = id;
 	}
 
-	public Date getFecha() {
+	public LocalDateTime getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDateTime fecha) {
 		this.fecha = fecha;
 	}
 

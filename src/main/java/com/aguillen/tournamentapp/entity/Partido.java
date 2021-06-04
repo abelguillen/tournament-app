@@ -1,15 +1,16 @@
 package com.aguillen.tournamentapp.entity;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import converter.LocalDateAttributeConverter;
 
 @Entity
 @Table(name = "partido")
@@ -24,8 +25,8 @@ public class Partido {
 	private Integer nroPartido;
 
 	@Column(name = "fecha")
-	@Temporal(TemporalType.DATE)
-	private Date fecha;
+	@Convert(converter = LocalDateAttributeConverter.class)
+	private LocalDateTime fecha;
 	
 	@Column(name = "ganador")
 	private String ganador;
@@ -39,7 +40,7 @@ public class Partido {
 		this.id = id;
 	}
 
-	public Partido(Integer id, Integer nroPartido, Date fecha, String ganador, Integer bonus) {
+	public Partido(Integer id, Integer nroPartido, LocalDateTime fecha, String ganador, Integer bonus) {
 		this.id = id;
 		this.nroPartido = nroPartido;
 		this.fecha = fecha;
@@ -63,11 +64,11 @@ public class Partido {
 		this.nroPartido = nroPartido;
 	}
 
-	public Date getFecha() {
+	public LocalDateTime getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDateTime fecha) {
 		this.fecha = fecha;
 	}
 

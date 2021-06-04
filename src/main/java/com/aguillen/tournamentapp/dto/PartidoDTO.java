@@ -1,6 +1,6 @@
 package com.aguillen.tournamentapp.dto;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -10,7 +10,7 @@ public class PartidoDTO {
 
 	private Integer id;
 	private Integer nroPartido;
-	private Date fecha;
+	private LocalDateTime fecha;
 	private List<Integer> equipoA;
 	private List<Integer> equipoB;
 	private String ganador;
@@ -18,7 +18,7 @@ public class PartidoDTO {
 
 	public PartidoDTO() { }
 
-	public PartidoDTO(Integer id, Integer nroPartido, Date fecha, List<Integer> equipoA, List<Integer> equipoB,
+	public PartidoDTO(Integer id, Integer nroPartido, LocalDateTime fecha, List<Integer> equipoA, List<Integer> equipoB,
 			String ganador, Integer bonus) {
 		super();
 		this.id = id;
@@ -46,11 +46,11 @@ public class PartidoDTO {
 		this.nroPartido = nroPartido;
 	}
 
-	public Date getFecha() {
+	public LocalDateTime getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDateTime fecha) {
 		this.fecha = fecha;
 	}
 
