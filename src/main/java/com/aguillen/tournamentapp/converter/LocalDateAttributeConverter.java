@@ -1,4 +1,4 @@
-package converter;
+package com.aguillen.tournamentapp.converter;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;

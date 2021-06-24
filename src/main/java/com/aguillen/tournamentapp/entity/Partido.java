@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import converter.LocalDateAttributeConverter;
+import com.aguillen.tournamentapp.converter.LocalDateAttributeConverter;
 
 @Entity
 @Table(name = "partido")
@@ -21,6 +21,7 @@ public class Partido {
 	@Column(name = "id")
 	private Integer id;
 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "nro_partido")
 	private Integer nroPartido;
 

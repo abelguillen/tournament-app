@@ -61,6 +61,7 @@ public class PartidoService {
 
 	public PartidoResponse create(Partido partido, Equipos equipos) throws Exception {
 		try {
+			partido.setNroPartido(getNroPartido());
 			validarJugadores(equipos);
 			PartidoDTO partidoDTO = PartidoMapper.buildPartidoDTO(partidoRepository.save(partido));
 			partidosJugadosService.save(PartidosJugadosMapper.buildEquiposToPartidosJugadosBO(equipos, partidoDTO.getId()));
@@ -88,6 +89,15 @@ public class PartidoService {
 //			throw new Exception(ex);
 //		}
 //	}
+	
+	private Integer getNroPartido() {
+		Integer ultimoPartido = partidoRepository.getLastNroPartido();
+		if(ultimoPartido == null) {
+			return 1;
+		} else {
+			return ultimoPartido + 1;
+		}
+	}
 
 	private void validarJugadores(Equipos equipos) throws Exception {
 		try {
