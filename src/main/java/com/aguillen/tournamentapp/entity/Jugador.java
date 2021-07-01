@@ -58,15 +58,34 @@ public class Jugador {
 		this.puntos=calcularPuntos();
 	}
 	
+	public void rollbackGanar(Integer bonus) {
+		this.pj--;
+		this.pg--;
+		this.bonus-=bonus;
+		this.puntos=calcularPuntos();
+	}
+	
 	public void empatar() {
 		this.pj++;
 		this.pe++;
 		this.puntos=calcularPuntos();
 	}
 	
+	public void rollbackEmpatar() {
+		this.pj--;
+		this.pe--;
+		this.puntos=calcularPuntos();
+	}
+	
 	public void perder() {
 		this.pj++;
 		this.pp++;
+		this.puntos=calcularPuntos();
+	}
+	
+	public void rollbackPerder() {
+		this.pj--;
+		this.pp--;
 		this.puntos=calcularPuntos();
 	}
 	

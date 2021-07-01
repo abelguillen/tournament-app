@@ -44,13 +44,13 @@ public class PartidosJugadosService {
 		}
 	}
 	
-//	public boolean deleteById(Integer id) throws Exception {
-//		try {
-//			repository.deleteById(id);
-//			return true;
-//		} catch(Exception ex) {
-//			throw new Exception(ex);
-//		}
-//	}
+	public boolean deleteById(Integer id) throws Exception {
+		try {
+			partidosJugadosrepository.deleteById(id);
+			return true;
+		} catch(Exception ex) {
+			throw new Exception(ex);
+		}
+	}
 	
 }

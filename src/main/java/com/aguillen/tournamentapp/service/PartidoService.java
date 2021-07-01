@@ -65,7 +65,7 @@ public class PartidoService {
 			validarJugadores(equipos);
 			PartidoDTO partidoDTO = PartidoMapper.buildPartidoDTO(partidoRepository.save(partido));
 			partidosJugadosService.save(PartidosJugadosMapper.buildEquiposToPartidosJugadosBO(equipos, partidoDTO.getId()));
-			List<PartidosJugadosDTO> partidosJugadosDTOList = (partidosJugadosService.getByIdPartido(partidoDTO.getId()));
+			List<PartidosJugadosDTO> partidosJugadosDTOList = partidosJugadosService.getByIdPartido(partidoDTO.getId());
 			sumarPuntos(partidosJugadosDTOList);
 			return PartidoMapper.buildPartidoResponse(partidoDTO, partidosJugadosDTOList);
 		} catch (Exception ex) {
@@ -73,22 +73,24 @@ public class PartidoService {
 		}
 	}
 
-//	public PartidoDTO update(Partido partido) throws Exception {
-//		try {
-//			return PartidoMapper.buildPartidoDTO(partidoRepository.save(partido));
-//		} catch (Exception ex) {
-//			throw new Exception(ex);
-//		}
-//	}
-//
-//	public boolean deleteById(Integer id) throws Exception {
-//		try {
-//			partidoRepository.deleteById(id);
-//			return true;
-//		} catch (Exception ex) {
-//			throw new Exception(ex);
-//		}
-//	}
+	public PartidoDTO update(Partido partido) throws Exception {
+		try {
+			return PartidoMapper.buildPartidoDTO(partidoRepository.save(partido));
+		} catch (Exception ex) {
+			throw new Exception(ex);
+		}
+	}
+
+	public boolean deleteById(Integer id) throws Exception {
+		try {
+			List<PartidosJugadosDTO> partidosJugadosDTOList = partidosJugadosService.getByIdPartido(id);
+			descontarPuntos(partidosJugadosDTOList);
+			partidoRepository.deleteById(id);
+			return true;
+		} catch (Exception ex) {
+			throw new Exception(ex);
+		}
+	}
 	
 	private Integer getNroPartido() {
 		Integer ultimoPartido = partidoRepository.getLastNroPartido();
@@ -144,6 +146,32 @@ public class PartidoService {
 				throw new Exception(message);
 			}
 		}
+	}
+	
+	private void descontarPuntos(List<PartidosJugadosDTO> partidosJugadosDTOList) throws Exception {
+		String ganador = partidosJugadosDTOList.get(0).getPartido().getGanador();
+		Integer bonus = partidosJugadosDTOList.get(0).getPartido().getBonus();
+		for(PartidosJugadosDTO partidosJugadosDTO : partidosJugadosDTOList) {
+			String equipo = partidosJugadosDTO.getEquipo();
+			Jugador jugador = partidosJugadosDTO.getJugador();
+			if(ganador.equals("EMPATE")) {
+				jugador.rollbackEmpatar();
+			} else if(ganador.equals(equipo)) {
+				jugador.rollbackGanar(bonus);
+			} else if(!ganador.equals(equipo)) {
+				jugador.rollbackPerder();
+			}
+			try {
+				@SuppressWarnings("unused")
+				JugadorDTO jugadorDTO = jugadorService.save(jugador);
+				partidosJugadosService.deleteById(partidosJugadosDTO.getId());
+			} catch (Exception ex) {
+				String message = "Ha ocurrido un error mientras se sumaban los puntos";
+				LOG.error(message);
+				throw new Exception(message);
+			}
+		}
+		
 	}
 
 }
