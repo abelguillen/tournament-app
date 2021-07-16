@@ -1,5 +1,7 @@
 package com.aguillen.tournamentapp.entity;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,10 +39,13 @@ public class Jugador {
 	@Column(name = "puntos")
 	private Integer puntos;
 	
+	@Column(name = "efectividad")
+	private String efectividad;
+	
 	public Jugador() {}
 
 	public Jugador(Integer id, String nombre, Integer pj, Integer pg, Integer pe, Integer pp, Integer bonus,
-			Integer puntos) {
+			Integer puntos, String efectividad) {
 		this.id = id;
 		this.nombre = nombre;
 		this.pj = pj;
@@ -49,6 +54,7 @@ public class Jugador {
 		this.pp = pp;
 		this.bonus = bonus;
 		this.puntos = puntos;
+		this.efectividad = efectividad;
 	}
 	
 	public void ganar(Integer bonus) {
@@ -56,6 +62,7 @@ public class Jugador {
 		this.pg++;
 		this.bonus+=bonus;
 		this.puntos=calcularPuntos();
+		this.efectividad=calcularEfectividad();
 	}
 	
 	public void rollbackGanar(Integer bonus) {
@@ -63,34 +70,52 @@ public class Jugador {
 		this.pg--;
 		this.bonus-=bonus;
 		this.puntos=calcularPuntos();
+		this.efectividad=calcularEfectividad();
 	}
 	
 	public void empatar() {
 		this.pj++;
 		this.pe++;
 		this.puntos=calcularPuntos();
+		this.efectividad=calcularEfectividad();
 	}
 	
 	public void rollbackEmpatar() {
 		this.pj--;
 		this.pe--;
 		this.puntos=calcularPuntos();
+		this.efectividad=calcularEfectividad();
 	}
 	
 	public void perder() {
 		this.pj++;
 		this.pp++;
 		this.puntos=calcularPuntos();
+		this.efectividad=calcularEfectividad();
 	}
 	
 	public void rollbackPerder() {
 		this.pj--;
 		this.pp--;
 		this.puntos=calcularPuntos();
+		this.efectividad=calcularEfectividad();
 	}
 	
 	private Integer calcularPuntos() {
 		return pg*3 + pe + bonus;
+	}
+	
+	private String calcularEfectividad() {
+		double calculo;
+		if(this.pj != 0) {
+			calculo = (double)this.pg / (double)this.pj * 100;
+			BigDecimal calculoBD = new BigDecimal(calculo);
+			calculoBD = calculoBD.setScale(0, BigDecimal.ROUND_DOWN);
+			return calculoBD.toString().concat("%");
+		} else {
+			return "0%";
+		}
+		
 	}
 
 	public Integer getId() {
@@ -155,6 +180,14 @@ public class Jugador {
 
 	public void setPuntos(Integer puntos) {
 		this.puntos = puntos;
+	}
+
+	public String getEfectividad() {
+		return efectividad;
+	}
+
+	public void setEfectividad(String efectividad) {
+		this.efectividad = efectividad;
 	}
 
 }

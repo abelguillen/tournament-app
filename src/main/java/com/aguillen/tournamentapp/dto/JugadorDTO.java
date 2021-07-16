@@ -13,11 +13,12 @@ public class JugadorDTO {
 	private Integer pp;
 	private Integer bonus;
 	private Integer puntos;
+	private String efectividad;
 
 	public JugadorDTO() {}
 
 	public JugadorDTO(Integer id, String nombre, Integer pj, Integer pg, Integer pe, Integer pp, Integer bonus,
-			Integer puntos) {
+			Integer puntos, String efectividad) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -27,6 +28,7 @@ public class JugadorDTO {
 		this.pp = pp;
 		this.bonus = bonus;
 		this.puntos = puntos;
+		this.efectividad = efectividad;
 	}
 
 	public Integer getId() {
@@ -91,6 +93,14 @@ public class JugadorDTO {
 
 	public void setPuntos(Integer puntos) {
 		this.puntos = puntos;
+	}
+
+	public String getEfectividad() {
+		return efectividad;
+	}
+
+	public void setEfectividad(String efectividad) {
+		this.efectividad = efectividad;
 	}
 
 }
