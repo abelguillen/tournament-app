@@ -3,3 +3,5 @@
 .classpath
 .project
 .settings/org.springframework.ide.eclipse.prefs
+/nb-configuration.xml
+/nbactions-release-profile.xml
